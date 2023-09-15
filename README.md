@@ -6,7 +6,7 @@ StereoCell v2.0 expands the application on the basic of the previous version. St
 <div align="center">
   <img src="docs/main_figure.png" width=567>
     <h6>
-      StereoCell v2.0 expands the application to generate single-cell gene expression profile for high-resolution spatial transcriptomics. (题目可能还会变)
+      Enhanced application on generating single-cell gene expression profile for high-resolution spatial transcriptomics.
     </h6>
 </div>
 <br>
@@ -14,13 +14,13 @@ StereoCell v2.0 expands the application on the basic of the previous version. St
 ## Installation
 StereoCell v2.0 is developed by Python scripts. Please make sure Conda is installed before installation.
 
-Download the project resource code (根据实际情况修改，加上链接) and install requirements.txt in a python==3.8 environment.
+Download the [project resource code] (https://github.com/STOmics/StereoCell_v2.0.git) and install requirements.txt in a python==3.8 environment.
 
 ```text
 # python3.8 in conda env
 conda create --name=StereoCellv2 python=3.8
 conda activate StereoCellv2
-cd StereoCell_v2.0
+cd StereoCell_v2.0-main
 pip install -r requirements.txt (需要给出requirements.txt，对于一些特殊依赖，例如pyvips需要额外说明)  # install
 ```
 
