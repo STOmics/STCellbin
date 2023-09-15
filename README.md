@@ -14,7 +14,7 @@ StereoCell v2.0 expands the application on the basic of the previous version. St
 ## Installation
 StereoCell v2.0 is developed by Python scripts. Please make sure Conda is installed before installation.
 
-Download the [project resource code](https://github.com/STOmics/StereoCell_v2.0.git) and install requirements.txt in a python==3.8 environment.
+Download the [project resource code](https://codeload.github.com/STOmics/StereoCell_v2.0/zip/refs/heads/main) and install requirements.txt in a python==3.8 environment.
 
 ```text
 # python3.8 in conda env
