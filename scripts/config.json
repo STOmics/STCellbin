@@ -1,0 +1,56 @@
+{
+  "qc_threshold": {
+    "track_point_score_threshold": 0.1,
+    "track_line_score_threshold": 0,
+    "clarity_threshold": 0.85,
+    "cluster_area_threshold": 0.05,
+    "cluster_width_threshold": 0.2,
+    "cluster_height_threshold": 0.2
+  },
+  "pt_threshold": {
+    "track_point_first_level_threshold": 5,
+    "track_point_second_level_threshold": 20
+  },
+  "line_threshold": {
+    "track_line_topk": 20
+  },
+  "global_template_threshold": {
+    "template_pair_points_threshold": 10,
+    "template_pair_points_qc_threshold": 5,
+    "template_range_image_size_threshold": 5000
+  },
+  "channel_config": {
+    "marker_detect_channel": {
+      "SSDNA": {
+        "pt_detect": -1,
+        "line_detect": -1,
+        "fft": 0,
+        "clarity": -1
+      },
+      "DAPI": {
+        "pt_detect": -1,
+        "line_detect": -1,
+        "fft": 0,
+        "clarity": -1
+      },
+      "HE": 1,
+      "CZI": {
+        "pt_detect": 1,
+        "line_detect": 1,
+        "fft": 0,
+        "clarity": 0
+      },
+      "MIF": {
+        "pt_detect": 0,
+        "line_detect": 0,
+        "fft": 0,
+        "clarity": 0
+      }
+    }
+  },
+  "run_config": {
+    "pt_running_process": 2,
+    "stitch_running_process": 5
+  }
+
+}

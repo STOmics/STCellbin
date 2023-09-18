@@ -1,0 +1,75 @@
+{
+  "cell_seg": {
+    "CELL": {
+      "SSDNA": "cellseg_bcdu_SHDI_221008_tf.onnx",
+      "DAPI": "cellseg_bcdu_SHDI_221008_tf.onnx",
+      "HE": "cellseg_bcdu_SHDI_221008_tf.onnx",
+      "RNA": "",
+      "IF": ""
+    },
+    "CYTOPLASM": {
+      "SSDNA": "",
+      "DAPI": "",
+      "HE": "",
+      "RNA": "",
+      "IF": ""
+    },
+    "running_config": {
+      "gpu": 0,
+      "num_threads": 0
+    },
+    "cell_p": {
+      "dmin": 20,
+      "dmax": 60,
+      "step": 10,
+      "photo_size": 2048,
+      "photo_step": 2000
+    }
+  },
+  "tissue_seg": {
+    "SSDNA": "tissueseg_bcdu_SDI_220822_tf.onnx",
+    "DAPI": "tissueseg_bcdu_SDI_220822_tf.onnx",
+    "HE": "tissueseg_bcdu_H_230602_tf.onnx",
+    "RNA": "tissueseg_bcdu_rna_220909_tf.onnx",
+    "IF": "",
+    "running_config": {
+      "gpu": 0,
+      "num_threads": 0
+    }
+  },
+  "clarity_eval": {
+    "SSDNA": "clarity_eval_mobilev3small05064_DAPI_20230608_pytorch.onnx",
+    "DAPI": "clarity_eval_mobilev3small05064_DAPI_20230608_pytorch.onnx",
+    "HE": "clarity_eval_mobilev3small05064_DAPI_20230608_pytorch.onnx",
+    "RNA": "",
+    "IF": "",
+    "running_config": {
+      "gpu": 0,
+      "num_threads": 0,
+      "batch_size": 2000
+    }
+  },
+  "stitch": {
+    "running_config": {
+      "num_threads": 5
+    },
+    "fft_channel": {
+      "HE": 1
+    }
+  },
+  "registration": {
+    "channel": {
+      "HE": null
+    }
+  },
+  "cell_correct": {
+    "num_threads": 30
+  },
+  "operation": {
+      "Stitching": true,
+      "Register": true,
+      "Tissue_Segment": true,
+      "Cell_Segment": false,
+      "Cell_Correct": false
+    }
+}

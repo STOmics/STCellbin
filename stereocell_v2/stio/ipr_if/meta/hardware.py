@@ -1,0 +1,187 @@
+import numpy as np
+from stio.ipr.meta import ModuleInfo
+
+
+class ImageInfo(ModuleInfo):
+    def __init__(self) -> None:
+        super(ImageInfo, self).__init__()
+        self.app_file_ver: str = ''
+        self.background_balance: bool = False
+        self.bit_depth: int = 8
+        self.brightness: int = 0
+        self.channel_count: int = 3
+        self.color_enhancement: bool = False
+        self.contrast: bool = False
+        self.device_sn: str = ''  # optional
+        self.distortion_correction: bool = True
+        self.exposure_time: float = 0.0
+        self.fov_height: int = 0
+        self.fov_width: int = 0
+        self.gain: str = '-'
+        self.gamma: float = 1.0
+        self.gamma_shift: bool = False
+        self.illuminance: str = '-'
+        self.manufacturer: str = ''
+        self.model: str = ''
+        self.overlap: float = 0
+        self.pitch: int = 1
+        self.pixel_size_x: str = '-'
+        self.pixel_size_y: str = '-'
+        self.qc_result_file: str = ''  # optional
+        self.scan_channel: str = ''
+        self.scan_cols: int = 0
+        self.scan_objective: float = 10.0
+        self.scan_rows: int = 0
+        self.scan_time: str = ''
+        self.sharpness: bool = False
+        self.stereo_resep_version: str = ''
+        self.stitched_image: bool = False
+        self.stomics_chip_sn: str = ''
+        self.white_balance: str = '-'
+        self.rgb_scale: np.array = np.array([0, 0], dtype=np.uint8)
+
+    def to_h5(self, grp):
+        grp.attrs['AppFileVer'] = str(self.app_file_ver)
+        grp.attrs['BackgroundBalance'] = self.background_balance
+        grp.attrs['BitDepth'] = self.bit_depth
+        grp.attrs['Brightness'] = self.brightness
+        grp.attrs['ChannelCount'] = self.channel_count
+        grp.attrs['ColorEnhancement'] = self.color_enhancement
+        grp.attrs['Contrast'] = self.contrast
+        grp.attrs['DeviceSN'] = self.device_sn
+        grp.attrs['DistortionCorrection'] = self.distortion_correction
+        grp.attrs['ExposureTime'] = self.exposure_time
+        grp.attrs['FOVHeight'] = self.fov_height
+        grp.attrs['FOVWidth'] = self.fov_width
+        grp.attrs['Gain'] = self.gain
+        grp.attrs['Gamma'] = self.gamma
+        grp.attrs['GammaShift'] = self.gamma_shift
+        grp.attrs['Illuminance'] = self.illuminance
+        grp.attrs['Manufacturer'] = self.manufacturer
+        grp.attrs['Model'] = self.model
+        grp.attrs['Overlap'] = self.overlap
+        grp.attrs['Pitch'] = self.pitch
+        grp.attrs['PixelSizeX'] = self.pixel_size_x
+        grp.attrs['PixelSizeY'] = self.pixel_size_y
+        grp.attrs['QCResultFile'] = self.qc_result_file
+        grp.attrs['ScanChannel'] = self.scan_channel
+        grp.attrs['ScanCols'] = self.scan_cols
+        grp.attrs['ScanObjective'] = self.scan_objective
+        grp.attrs['ScanRows'] = self.scan_rows
+        grp.attrs['ScanTime'] = self.scan_time
+        grp.attrs['Sharpness'] = self.sharpness
+        grp.attrs['StereoResepVersion'] = self.stereo_resep_version
+        grp.attrs['StitchedImage'] = self.stitched_image
+        grp.attrs['STOmicsChipSN'] = self.stomics_chip_sn
+        grp.attrs['WhiteBalance'] = self.white_balance
+        self.create_dataset(grp, 'RGBScale', self.rgb_scale, compression=False)
+
+    def from_h5(self, grp):
+        self.app_file_ver = grp.attrs['AppFileVer']
+        self.background_balance = grp.attrs['BackgroundBalance']
+        self.bit_depth = grp.attrs['BitDepth']
+        self.brightness = grp.attrs['Brightness']
+        self.channel_count = grp.attrs['ChannelCount']
+        self.color_enhancement = grp.attrs['ColorEnhancement']
+        self.contrast = grp.attrs['Contrast']
+        self.device_sn = grp.attrs['DeviceSN']
+        self.distortion_correction = grp.attrs['DistortionCorrection']
+        self.exposure_time = grp.attrs['ExposureTime']
+        self.fov_height = grp.attrs['FOVHeight']
+        self.fov_width = grp.attrs['FOVWidth']
+        self.gain = grp.attrs['Gain']
+        self.gamma = grp.attrs['Gamma']
+        self.gamma_shift = grp.attrs['GammaShift']
+        self.illuminance = grp.attrs['Illuminance']
+        self.manufacturer = grp.attrs['Manufacturer']
+        self.model = grp.attrs['Model']
+        self.overlap = grp.attrs['Overlap']
+        self.pitch = grp.attrs['Pitch']
+        self.pixel_size_x = grp.attrs['PixelSizeX']
+        self.pixel_size_y = grp.attrs['PixelSizeY']
+        self.scan_channel = grp.attrs['ScanChannel']
+        self.scan_cols = grp.attrs['ScanCols']
+        self.scan_objective = grp.attrs['ScanObjective']
+        self.scan_rows = grp.attrs['ScanRows']
+        self.scan_time = grp.attrs['ScanTime']
+        self.qc_result_file = grp.attrs['QCResultFile']
+        self.sharpness = grp.attrs['Sharpness']
+        self.stereo_resep_version = grp.attrs['StereoResepVersion']
+        self.stitched_image = grp.attrs['StitchedImage']
+        self.stomics_chip_sn = grp.attrs['STOmicsChipSN']
+        self.white_balance = grp.attrs['WhiteBalance']
+        self.rgb_scale = grp['RGBScale'][...]   # dataset
+
+    def to_dict(self, ):
+        dct = dict()
+        dct['AppFileVer'] = str(self.app_file_ver)
+        dct['BackgroundBalance'] = self.background_balance
+        dct['BitDepth'] = self.bit_depth
+        dct['Brightness'] = self.brightness
+        dct['ChannelCount'] = self.channel_count
+        dct['ColorEnhancement'] = self.color_enhancement
+        dct['Contrast'] = self.contrast
+        dct['DeviceSN'] = self.device_sn
+        dct['DistortionCorrection'] = self.distortion_correction
+        dct['ExposureTime'] = self.exposure_time
+        dct['FOVHeight'] = self.fov_height
+        dct['FOVWidth'] = self.fov_width
+        dct['Gain'] = self.gain
+        dct['Gamma'] = self.gamma
+        dct['GammaShift'] = self.gamma_shift
+        dct['Illuminance'] = self.illuminance
+        dct['Manufacturer'] = self.manufacturer
+        dct['Model'] = self.model
+        dct['Overlap'] = self.overlap
+        dct['Pitch'] = self.pitch
+        dct['PixelSizeX'] = self.pixel_size_x
+        dct['PixelSizeY'] = self.pixel_size_y
+        dct['QCResultFile'] = self.qc_result_file
+        dct['ScanChannel'] = self.scan_channel
+        dct['ScanCols'] = self.scan_cols
+        dct['ScanObjective'] = self.scan_objective
+        dct['ScanRows'] = self.scan_rows
+        dct['ScanTime'] = self.scan_time
+        dct['Sharpness'] = self.sharpness
+        dct['StereoResepVersion'] = self.stereo_resep_version
+        dct['StitchedImage'] = self.stitched_image
+        dct['STOmicsChipSN'] = self.stomics_chip_sn
+        dct['WhiteBalance'] = self.white_balance
+        dct['RGBScale'] = self.rgb_scale
+        return dct
+
+    def from_dict(self, dct: dict):
+        self.app_file_ver = dct['AppFileVer']
+        self.background_balance = dct['BackgroundBalance']
+        self.bit_depth = dct['BitDepth']
+        self.brightness = dct['Brightness']
+        self.channel_count = dct['ChannelCount']
+        self.color_enhancement = dct['ColorEnhancement']
+        self.contrast = dct['Contrast']
+        self.device_sn = dct['DeviceSN']
+        self.distortion_correction = dct['DistortionCorrection']
+        self.exposure_time = dct['ExposureTime']
+        self.fov_height = dct['FOVHeight']
+        self.fov_width = dct['FOVWidth']
+        self.gain = dct['Gain']
+        self.gamma = dct['Gamma']
+        self.gamma_shift = dct['GammaShift']
+        self.illuminance = dct['Illuminance']
+        self.manufacturer = dct['Manufacturer']
+        self.model = dct['Model']
+        self.overlap = dct['Overlap']
+        self.pitch = dct['Pitch']
+        self.pixel_size_x = dct['PixelSizeX']
+        self.pixel_size_y = dct['PixelSizeY']
+        self.scan_channel = dct['ScanChannel']
+        self.scan_cols = dct['ScanCols']
+        self.scan_objective = dct['ScanObjective']
+        self.scan_rows = dct['ScanRows']
+        self.scan_time = dct['ScanTime']
+        self.qc_result_file = dct['QCResultFile']
+        self.sharpness = dct['Sharpness']
+        self.stereo_resep_version = dct['StereoResepVersion']
+        self.stitched_image = dct['StitchedImage']
+        self.stomics_chip_sn = dct['STOmicsChipSN']
+        self.white_balance = dct['WhiteBalance']
+        self.rgb_scale = dct['RGBScale']
