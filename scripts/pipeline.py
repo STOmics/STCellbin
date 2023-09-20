@@ -1,6 +1,6 @@
 import torch
 import os
-
+from distutils.util import strtobool
 import sys
 import h5py
 import argparse
@@ -965,7 +965,7 @@ class Pipeline(object):
             except Exception as e:
                 clog.error(traceback.format_exc())
 
-        np.savetxt(os.path.join(self._output_path, self.stitch_template + self.txt_ext), track_template)
+        # np.savetxt(os.path.join(self._output_path, self.stitch_template + self.txt_ext), track_template)
         clog.info('Stitching Done')
 
         # except Exception as e:
@@ -1078,38 +1078,38 @@ class Pipeline(object):
             self.registrator.transform_to_regist()
             self._regist_img = self.registrator.regist_img  # 配准图返回
 
-        np.savetxt(os.path.join(self._output_path, self.gene_template + self.txt_ext), vision_cp)
+        # np.savetxt(os.path.join(self._output_path, self.gene_template + self.txt_ext), vision_cp)
         regist_path = os.path.join(self._output_path,
                                    f'{self.chip_name}_{self.regist_img_name}' + f"_{p_type}" + self.img_ext)
         Image.write_s(self._regist_img, regist_path, compression=True)
-        Image.write_s(
-            gene_exp,
-            os.path.join(self._output_path, f'{self.chip_name}_{self.gene_img_name}' + self.img_ext),
-            compression=True)
+        # Image.write_s(
+        #     gene_exp,
+        #     os.path.join(self._output_path, f'{self.chip_name}_{self.gene_img_name}' + self.img_ext),
+        #     compression=True)
 
         ####
         # 适配流程
-        h_, w_ = self.registrator.fov_transformed.shape[:2]
-        json_serialize({'height': h_, 'width': w_}, os.path.join(self._output_path, 'attrs.json'))
-        if w_ > h_:
-            thumb = f_resize(f_ij_16_to_8(self.registrator.fov_transformed.copy()), (1500, int(h_ * 1500 / w_)))
-        else:
-            thumb = f_resize(f_ij_16_to_8(self.registrator.fov_transformed.copy()), (int(w_ * 1500 / h_), 1500))
-        Image.write_s(thumb, os.path.join(self._output_path, 'transform_thumb.png'))
+        # h_, w_ = self.registrator.fov_transformed.shape[:2]
+        # json_serialize({'height': h_, 'width': w_}, os.path.join(self._output_path, 'attrs.json'))
+        # if w_ > h_:
+        #     thumb = f_resize(f_ij_16_to_8(self.registrator.fov_transformed.copy()), (1500, int(h_ * 1500 / w_)))
+        # else:
+        #     thumb = f_resize(f_ij_16_to_8(self.registrator.fov_transformed.copy()), (int(w_ * 1500 / h_), 1500))
+        # Image.write_s(thumb, os.path.join(self._output_path, 'transform_thumb.png'))
 
         # 组织最大外接矩阵
-        bbox = [0, 0, self._regist_img.shape[1], self._regist_img.shape[0]]
-        with open(os.path.join(self._output_path, f'{self.chip_name}_tissue_bbox.csv'), 'w') as f:
-            f.write('left\tupper\tright\tlower\n')
-            f.write('\t'.join(list(map(str, bbox))))
+        # bbox = [0, 0, self._regist_img.shape[1], self._regist_img.shape[0]]
+        # with open(os.path.join(self._output_path, f'{self.chip_name}_tissue_bbox.csv'), 'w') as f:
+        #     f.write('left\tupper\tright\tlower\n')
+        #     f.write('\t'.join(list(map(str, bbox))))
         ####
 
-        Image.write_s(
-            self.registrator.fov_transformed,
-            os.path.join(self._output_path, self.stitch_transform_name + f"_{p_type}" + self.img_ext),
-            compression=True)
-        np.savetxt(os.path.join(self._output_path, self.transform_template + self.txt_ext),
-                   self.registrator.adjusted_stitch_template_unflip)
+        # Image.write_s(
+        #     self.registrator.fov_transformed,
+        #     os.path.join(self._output_path, self.stitch_transform_name + f"_{p_type}" + self.img_ext),
+        #     compression=True)
+        # np.savetxt(os.path.join(self._output_path, self.transform_template + self.txt_ext),
+        #            self.registrator.adjusted_stitch_template_unflip)
 
         with h5py.File(self._ipr_path, 'a') as conf:
             if 'MatrixTemplate' in conf[f"{p_type}"]['Register'].keys():
@@ -1151,10 +1151,10 @@ class Pipeline(object):
                     f'{self.chip_name}_{self.regist_img_name}' + f"_{cur_p_type}" + self.img_ext
                 )
                 Image.write_s(self._regist_img, regist_path, compression=True)
-                Image.write_s(
-                    self.registrator.fov_transformed,
-                    os.path.join(self._output_path, self.stitch_transform_name + f"_{cur_p_type}" + self.img_ext),
-                    compression=True)
+                # Image.write_s(
+                #     self.registrator.fov_transformed,
+                #     os.path.join(self._output_path, self.stitch_transform_name + f"_{cur_p_type}" + self.img_ext),
+                #     compression=True)
 
         del self._stitch_img
         del gene_exp
@@ -1457,7 +1457,9 @@ class Pipeline(object):
                 self._output_path,
                 f'{self.chip_name}_{mask_name}' + self.img_ext
             )
-            mask_paths.append(cur_mask_path)
+            if os.path.exists(cur_mask_path):
+                mask_paths.append(cur_mask_path)
+        clog.info(f"Exists: {mask_paths}")
         generate_gem(
             mask_paths=mask_paths,
             gem_path=gem_path,
@@ -1468,7 +1470,6 @@ class Pipeline(object):
         #     clog.error(str(e))
 
     def run_x_bin(self, gem_path, input_path, ipr_path, output=None):
-        clog.info(f"Using version {self.version}")
         self._gem_path = gem_path
         self._input_path = input_path
         self._output_path = os.path.join(output, "registration")
@@ -1514,11 +1515,12 @@ class Pipeline(object):
             #     self.regist_to_rpi()
             # if self.config_file["operation"]["Cell_Correct"]:
             #     self._cell_labeling()
-            if self.config_file["operation"]["Cell_Segment"] and self.version.upper() == 'SAP':
+            if self.config_file["operation"]["Cell_Segment"]:
                 for p_type in self.protein_type:
                     if p_type == 'DAPI':
                         continue
-                    self.cell_mask_post_process(p_type)
+                    if self.version:
+                        self.cell_mask_post_process(p_type)
                     self.gem_file_post_process(p_type)
 
         else:
@@ -1623,7 +1625,7 @@ def main(args, para):
             cell_type=args.cell_type.upper(),
             config=args.config,
             zoo_dir=args.zoo_dir,
-            version=args.version
+            version=args.filter
         )
     except Exception:
         clog.error(traceback.format_exc())
@@ -1651,16 +1653,12 @@ def arg_parser():
     parser.add_argument("-o", "--output", action="store", dest="output", type=str, required=True,
                         help="Result output dir.")
 
-    # Optional
-    parser.add_argument("-cf", "--config", action="store", dest="config", type=str, default=JIQUN_CF,
-                        help="Config file (Json)")
-    parser.add_argument("-z", "--zoo", action="store", dest="zoo_dir", type=str, default=JIQUN_ZOO,
-                        help="DNN weights dir")
-
+    parser.add_argument("-cf", "--config", action="store", dest="config", type=str, help="Config file (Json)")
+    parser.add_argument("-z", "--zoo", action="store", dest="zoo_dir", type=str, help="DNN weights dir")
     parser.add_argument("-ct", "--cell_seg_module", action="store", dest="cell_type", type=str, default='CELL',
                         help="Cell Seg type")
-    parser.add_argument("-v", "--prog_version", action="store", dest="version", type=str, default=PROG_VERSION,
-                        help="SAP or UAT")
+    parser.add_argument("-f", "--filter", action="store", dest="filter", type=lambda x: bool(strtobool(x)),
+                        default=True, help="filter or not")
 
     parser.set_defaults(func=main)
     (para, args) = parser.parse_known_args()
