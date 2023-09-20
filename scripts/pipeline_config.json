@@ -69,7 +69,7 @@
       "Stitching": true,
       "Register": true,
       "Tissue_Segment": true,
-      "Cell_Segment": false,
+      "Cell_Segment": true,
       "Cell_Correct": false
     }
 }
