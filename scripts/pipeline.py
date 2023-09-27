@@ -1,4 +1,4 @@
-import torch
+# import torch # remove comment if you are using windows env
 import os
 from distutils.util import strtobool
 import sys
