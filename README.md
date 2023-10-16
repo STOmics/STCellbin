@@ -6,7 +6,7 @@ STCellbin utilizes cell nuclei staining images as a bridge to acquire cell membr
 <div align="center">
   <img src="docs/main_figure.png" width=567>
     <h6>
-      Generating accurate single-cell gene expression profiles for high-resolution spatial transcriptomics based on cell boundary images
+      Generating single-cell gene expression profiles for high-resolution spatial transcriptomics based on cell boundary images
     </h6>
 </div>
 <br>
