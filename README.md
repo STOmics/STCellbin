@@ -1,7 +1,7 @@
-# StereoCell update
+# STCellbin
 
 ## Introduction
-StereoCell is updated to a new version, which utilizes cell nuclei staining images as a bridge to acquire cell membrane/wall staining images that align with spatial gene expression map. By employing advanced cell segmentation technique, accurate cell boundaries can be obtained, leading to more reliable single-cell spatial gene expression profiles. The enhanced capability of this updating provides valuable insights into the spatial organization of gene expression within cells and contributes to a deeper understanding of tissue biology.
+STCellbin utilizes cell nuclei staining images as a bridge to acquire cell membrane/wall staining images that align with spatial gene expression map. By employing advanced cell segmentation technique, accurate cell boundaries can be obtained, leading to more reliable single-cell spatial gene expression profiles. The enhanced capability of this updating provides valuable insights into the spatial organization of gene expression within cells and contributes to a deeper understanding of tissue biology.
 
 <div align="center">
   <img src="docs/main_figure.png" width=567>
@@ -12,17 +12,17 @@ StereoCell is updated to a new version, which utilizes cell nuclei staining imag
 <br>
 
 ## Installation
-StereoCell update is developed by Python scripts. Please make sure Conda is installed before installation.
+STCellbin is developed by Python scripts. Please make sure Conda is installed before installation.
 
-Download the [project resource code](https://codeload.github.com/STOmics/StereoCell_v2.0/zip/refs/heads/main) and install requirements.txt in a python==3.8 environment.
+Download the [project resource code](https://codeload.github.com/STOmics/STCellbin/zip/refs/heads/main) and install requirements.txt in a python==3.8 environment.
 
 ```text
 # python3.8 in conda env
-git clone https://github.com/STOmics/StereoCell_v2.0.git
-conda create --name=StereoCell_update python=3.8
-conda activate StereoCell_update
+git clone https://github.com/STOmics/STCellbin.git
+conda create --name=STCellbin python=3.8
+conda activate STCellbin
 conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 -c pytorch
-cd StereoCell_v2.0
+cd STCellbin
 pip install -r requirements.txt # install
 ```
 
@@ -52,10 +52,10 @@ $ conda install --channel conda-forge pyvips==2.2.1
 The demo datasets have been deposited into Spatial Transcript Omics DataBase (STOmics DB) of China National GeneBank DataBase (CNGBdb) with accession number [STT0000048](https://db.cngb.org/stomics/project/STT0000048).
 
 ### Command Line
-StereoCell update in one-stop is performed by command:
+STCellbin in one-stop is performed by command:
 
 ```text
-python StereoCell_v2.0/stereocell_v2.py
+python STCellbin/STCellbin.py
 -i data/C01344C4/C01344C4,data/C01344C4/C01344C4_Actin_IF
 -m /data/C01344C4.gem.gz
 -o /data/result
@@ -68,12 +68,12 @@ python StereoCell_v2.0/stereocell_v2.py
 * ```-c``` Chip number of the Stereo-seq data.
 
 ## License and Citation
-StereoCell update is released under the MIT license.
+STCellbin is released under the MIT license.
 
-Please cite StereoCell update in your publications if it helps your research:
+Please cite STCellbin in your publications if it helps your research:
 
 ```text
-B. Zhang et al. Generating accurate single-cell gene expression profiles for high-resolution spatial transcriptomics based on cell boundary images. Preprint in bioRxiv. 2023.
+B. Zhang et al. Generating single-cell gene expression profiles for high-resolution spatial transcriptomics based on cell boundary images. Preprint in bioRxiv. 2023.
 ```
 
 ## Reference
