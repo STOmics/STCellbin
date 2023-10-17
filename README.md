@@ -1,7 +1,7 @@
 # STCellbin
 
 ## Introduction
-STCellbin utilizes cell nuclei staining images as a bridge to acquire cell membrane/wall staining images that align with spatial gene expression map. By employing advanced cell segmentation technique, accurate cell boundaries can be obtained, leading to more reliable single-cell spatial gene expression profiles. The enhanced capability of this updating provides valuable insights into the spatial organization of gene expression within cells and contributes to a deeper understanding of tissue biology.
+STCellbin utilizes the cell nuclei staining image as a bridge to acquire cell membrane/wall staining image that align with spatial gene expression map. By employing advanced cell segmentation technique, accurate cell boundaries can be obtained, leading to more reliable single-cell spatial gene expression profile. The enhanced capability of this updating provides valuable insights into the spatial organization of gene expression within cells and contributes to a deeper understanding of tissue biology.
 
 <div align="center">
   <img src="docs/main_figure.png" width=567>
