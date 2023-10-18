@@ -5,13 +5,13 @@
 # @Author    :kuisu_dgut@163.com
 
 import numpy as np
-from stereocell_v2.calibration.imreg_dft import translation, similarity
+from src.calibration.imreg_dft import translation, similarity
 import cv2
 import os
 
-from stereocell_v2.calibration.utils import tiff_read, show_3d, affineMatrix3D
-from stereocell_v2.calibration.utils import tiff_write, mat_channel
-from stereocell_v2.calibration.transform_vips import PyvipsImage
+from src.calibration.utils import tiff_read, show_3d, affineMatrix3D
+from src.calibration.utils import tiff_write, mat_channel
+from src.calibration.transform_vips import PyvipsImage
 
 
 class Register(object):

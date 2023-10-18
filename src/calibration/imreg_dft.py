@@ -7,7 +7,7 @@
 import numpy as np
 import scipy.ndimage.interpolation as ndii
 import numpy.fft as fft
-from stereocell_v2.calibration import utils
+from src.calibration import utils
 
 
 def translation(im0, im1, filter_pcorr=0, odds=1, constraints=None,

@@ -21,26 +21,26 @@ import tifffile
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(ROOT)
 
-from stereocell_v2.cellbin.modules.stitching import Stitching
-from stereocell_v2.cellbin.modules.registration import Registration
-from stereocell_v2.cellbin.modules.tissue_segmentation import TissueSegmentation
+from src.cellbin.modules.stitching import Stitching
+from src.cellbin.modules.registration import Registration
+from src.cellbin.modules.tissue_segmentation import TissueSegmentation
 
-from stereocell_v2.stio.matrix_loader import MatrixLoader
-from stereocell_v2.cellbin.modules.cell_labelling import CellLabelling
-from stereocell_v2.cellbin.utils import clog
-from stereocell_v2.cellbin.image import Image
-from stereocell_v2.cellbin.dnn.weights import auto_download_weights
+from src.stio.matrix_loader import MatrixLoader
+from src.cellbin.modules.cell_labelling import CellLabelling
+from src.cellbin.utils import clog
+from src.cellbin.image import Image
+from src.cellbin.dnn.weights import auto_download_weights
 # from cellbin.image.augmentation import clarity_enhance_method
-from stereocell_v2.cellbin.utils.file_manager import search_files, rc_key
-from stereocell_v2.cellbin.image.augmentation import f_resize
-from stereocell_v2.cellbin.image.augmentation import f_ij_16_to_8
-from stereocell_v2.cellbin.image.augmentation import f_gray2bgr
+from src.cellbin.utils.file_manager import search_files, rc_key
+from src.cellbin.image.augmentation import f_resize
+from src.cellbin.image.augmentation import f_ij_16_to_8
+from src.cellbin.image.augmentation import f_gray2bgr
 
-from stereocell_v2.cellbin.image.augmentation import f_ij_auto_contrast
-from stereocell_v2.cellbin.image.augmentation import f_rgb2gray
-from stereocell_v2.cellbin.modules.iqc.clarity_qc import ClarityQC
-from stereocell_v2.calibration.match_calibration import FFTRegister
-from stereocell_v2.stio.chip import STOmicsChip
+from src.cellbin.image.augmentation import f_ij_auto_contrast
+from src.cellbin.image.augmentation import f_rgb2gray
+from src.cellbin.modules.iqc.clarity_qc import ClarityQC
+from src.calibration.match_calibration import FFTRegister
+from src.stio.chip import STOmicsChip
 
 # Constant
 PROG_VERSION = 'SAP'
@@ -58,7 +58,7 @@ import math
 import numpy as np
 import cv2
 
-from stereocell_v2.cellbin.image.mask import f_fill_all_hole
+from src.cellbin.image.mask import f_fill_all_hole
 
 CNT_PARAGRAPH = 20
 
@@ -1239,7 +1239,7 @@ class Pipeline(object):
     #         clog.error(traceback.format_exc())
 
     def _cell_segmentation(self, f_type):
-        from stereocell_v2.cellpose.main import CellSegmentation
+        from src.cellpose.main import CellSegmentation
         gpu = True
         photo_size = self.c_config['cell_p']['photo_size']
         photo_step = self.c_config['cell_p']['photo_step']

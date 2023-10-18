@@ -11,20 +11,20 @@ import sys
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(ROOT)
 
-from stereocell_v2.cellbin.dnn.weights import auto_download_weights
-from stereocell_v2.cellbin.utils import clog
-from stereocell_v2.cellbin.modules.image_qc import ImageQualityControl
-from stereocell_v2.cellbin.utils.file_manager import rc_key
-from stereocell_v2.cellbin.utils.file_manager import rc_key_trans
-from stereocell_v2.cellbin.image import Image
-from stereocell_v2.cellbin.image.wsi_stitch import StitchingWSI
-from stereocell_v2.cellbin.image.wsi_split import SplitWSI
+from src.cellbin.dnn.weights import auto_download_weights
+from src.cellbin.utils import clog
+from src.cellbin.modules.image_qc import ImageQualityControl
+from src.cellbin.utils.file_manager import rc_key
+from src.cellbin.utils.file_manager import rc_key_trans
+from src.cellbin.image import Image
+from src.cellbin.image.wsi_stitch import StitchingWSI
+from src.cellbin.image.wsi_split import SplitWSI
 
-from stereocell_v2.stio import slide2ipr0d0d1
-from stereocell_v2.stio.microscopy.slide_factory import MicroscopeBaseFileFactory
-from stereocell_v2.stio.chip import STOmicsChip
+from src.stio import slide2ipr0d0d1
+from src.stio.microscopy.slide_factory import MicroscopeBaseFileFactory
+from src.stio.chip import STOmicsChip
 
-from stereocell_v2.calibration.match_calibration import FFTRegister
+from src.calibration.match_calibration import FFTRegister
 
 # DEFAULT_ZOO_PATH = '../../cellbin/dnn/weights'
 ZOO = {

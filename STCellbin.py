@@ -4,7 +4,7 @@ from glob import glob
 import argparse
 from distutils.util import strtobool
 
-from stereocell_v2.cellbin.utils import clog
+from src.cellbin.utils import clog
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(ROOT)
@@ -13,7 +13,7 @@ QC_CONFIG = os.path.join(ROOT, 'scripts', 'config.json')
 QC_ENTRY = os.path.join(ROOT, 'scripts', 'qc.py')
 PIPELINE_CONFIG = os.path.join(ROOT, 'scripts', 'pipeline_config.json')
 PIPELINE_ENTRY = os.path.join(ROOT, 'scripts', 'pipeline.py')
-WEIGHT_DIR = os.path.join(ROOT, 'stereocell_v2', 'weights')
+WEIGHT_DIR = os.path.join(ROOT, 'src', 'weights')
 
 PROG_VERSION = "1.0.0"
 
@@ -121,7 +121,7 @@ def main(args, para):
 
 def arg_parser():
     usage = '''
-    python StereoCell_v2.0\stereocell_v2.py
+    python STCellbin.py
     -i "D:\Data\mif\test_mif_data\C01344C4\C01344C4","D:\Data\mif\test_mif_data\C01344C4\C01344C4_Actin_IF" 
     -m "D:\Data\mif\test_mif_data\C01344C4\C01344C4.gem.gz" -o D:\Data\mif\pipeline_out_0920 -c C01344C4
     '''
