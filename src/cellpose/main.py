@@ -42,7 +42,7 @@ class CellSegmentation:
 
         wid = patches.shape[0]
         high = patches.shape[1]
-        model = models.Cellpose(gpu=True, model_type='cyto')
+        model = models.Cellpose(gpu=True, model_type='cyto2')
         a_patches = np.full((wid, high, (self.photo_step), (self.photo_step)), 255)
 
         for i in range(wid):
@@ -50,24 +50,17 @@ class CellSegmentation:
                 img_data = patches[i, j, :, :]
                 num0min = wid * high * 800000000000000
                 for k in range(self.dmin, self.dmax, self.step):
-
-                    masks, flows, styles, diams = model.eval(img_data, diameter=k, channels=[0, 0],
-                                                             flow_threshold=0.9)
+                    masks, flows, styles, diams = model.eval(img_data, diameter=k, channels=[0, 0], flow_threshold=0.9)
                     num0 = np.sum(masks == 0)
-
                     if num0 < num0min:
                         num0min = num0
                         outlines = utils.masks_to_outlines(masks)
                         outlines = (outlines == True).astype(int) * 255
-
                         try:
-                            a_patches[i, j, :, :] = outlines[act_step:(self.photo_step + act_step),
-                                                    act_step:(self.photo_step + act_step)]
+                            a_patches[i, j, :, :] = outlines[act_step:(self.photo_step + act_step), act_step:(self.photo_step + act_step)]
                             output = masks.copy()
                         except:
-                            a_patches[i, j, :, :] = output[act_step:(self.photo_step + act_step),
-                                                    act_step:(self.photo_step + act_step)]
-
+                            a_patches[i, j, :, :] = output[act_step:(self.photo_step + act_step), act_step:(self.photo_step + act_step)]
         patch_nor = patchify.unpatchify(a_patches, ((wid) * (self.photo_step), (high) * (self.photo_step)))
         nor_imgdata = np.array(patch_nor)
         cropped_1 = nor_imgdata[0:gray_image.shape[0], 0:gray_image.shape[1]]
@@ -86,7 +79,7 @@ class CellSegmentation:
             mask = distance_transform[y, x] <= contour_thickness
             expanded_image[y - contour_thickness:y + contour_thickness + 1,
             x - contour_thickness:x + contour_thickness + 1] = mask * 255
-        cv2.imwrite(r"E:\HE_data\img_crop\HE_train_A02085D1_x_5214_y_8103_result2.tif", expanded_image)
+        # cv2.imwrite(r"E:\HE_data\img_crop\HE_train_A02085D1_x_5214_y_8103_result2.tif", expanded_image)
         contours, _ = cv2.findContours(expanded_image, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
         print(len(contours))
         height, width = process_image.shape
