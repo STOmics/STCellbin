@@ -22,7 +22,7 @@ git clone https://github.com/STOmics/STCellbin.git
 conda create --name=STCellbin python=3.8
 conda activate STCellbin
 conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 -c pytorch
-cd STCellbin
+cd STCellbin-main
 pip install -r requirements.txt # install
 ```
 
