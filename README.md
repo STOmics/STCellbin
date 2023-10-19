@@ -55,17 +55,17 @@ The demo datasets have been deposited into Spatial Transcript Omics DataBase (ST
 STCellbin in one-stop is performed by command:
 
 ```text
-python STCellbin/STCellbin.py
--i data/C01344C4/C01344C4,data/C01344C4/C01344C4_Actin_IF
--m /data/C01344C4.gem.gz
--o /data/result
+python STCellbin-main/STCellbin.py
+-i /data/nuclei_tiles,data/membrane_tiles
+-m /data/spatial_data.gem.gz
+-o /result
 -c C01344C4
 ```
 
-* ```-i```  The path of all tiles.
-* ```-m``` The compressed file of spatial gene expression data.
-* ```-o``` The output path.
-* ```-c``` Chip number of the Stereo-seq data.
+* ```-i``` Folder paths of cell nuclei staining image tiles and cell membrane/wall staining image tiles respectively.
+* ```-m``` Compressed file of Stereo-seq spatial gene expression data.
+* ```-o``` Output path.
+* ```-c``` Chip number of Stereo-seq data.
 
 ## License and Citation
 STCellbin is released under the MIT license.
