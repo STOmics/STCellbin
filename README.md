@@ -56,8 +56,8 @@ STCellbin in one-stop is performed by command:
 
 ```text
 python STCellbin-main/STCellbin.py
--i /data/nuclei_tiles,data/membrane_tiles
--m /data/spatial_data.gem.gz
+-i /data/C01344C4,/data/C01344C4_Actin_IF
+-m /data/C01344C4.gem.gz
 -o /result
 -c C01344C4
 ```
