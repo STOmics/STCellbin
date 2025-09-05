@@ -51,7 +51,7 @@ $ conda install --channel conda-forge pyvips==2.2.1
 ### Test dataset
 The demo datasets have been deposited into Spatial Transcript Omics DataBase (STOmics DB) of China National GeneBank DataBase (CNGBdb) with accession number [STT0000048](https://db.cngb.org/stomics/project/STT0000048).
 
-We also provide a backup [link](https://bgipan.genomics.cn/#/link/PNF9wOur6xawSfQYYdg2) (PWD: JlI9) to share staining tiles and spatial gene expression data.
+We also provide a backup [link](https://bgipan.genomics.cn/#/link/TNA9XSaCGwaMao1GFF2w) (PWD: he06) to share staining tiles and spatial gene expression data.
 
 ### Command Line
 STCellbin in one-stop is performed by command:
